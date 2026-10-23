@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Définit le jeu de caractères et la vue pour le responsive design -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restaurants de Chambéry - Chambé eat</title>
+    <!-- Lien vers le fichier CSS pour le style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- En-tête de la page -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de l'application -->
+            <img src="{{ url_for('static', filename='image/chambeat.jpg') }}" alt="Logo Chamb-eat" class="logo">
+            <h1>Chambé eat</h1>
+        </div>
+        <!-- Menu de navigation -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('restaurants') }}">Restaurants</a></li>
+                <li><a href="{{ url_for('boulangeries') }}">Boulangeries</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section d'introduction -->
+    <section class="intro">
+        <h2>Découvrez les meilleurs restaurants de Chambéry !</h2>
+        <p>Trouvez l'endroit parfait pour manger selon vos envies.</p>
+        <!-- Barre de recherche pour les restaurants -->
+        <input type="text" id="search-bar" placeholder="Recherchez un restaurant..." onkeyup="searchRestaurants()">
+    </section>
+
+    <!-- Section des résultats de recherche -->
+    <section id="search-results" class="restaurants">
+        <h2>Résultats de recherche</h2>
+        <!-- Grille pour afficher les résultats de recherche -->
+        <div class="restaurant-grid"></div>
+    </section>
+
+    <!-- Section des restaurants recommandés -->
+    <section id="recommended-restaurants" class="restaurants active">
+        <h2>Nos restaurants recommandés</h2>
+        <!-- Grille pour afficher les restaurants recommandés -->
+        <div class="restaurant-grid">
+            <!-- Boucle pour afficher chaque restaurant recommandé -->
+            {% for restaurant in recommended_restaurants %}
+            <div class="restaurant-card">
+                <!-- Affiche l'image du restaurant si disponible -->
+                {% if restaurant['COL 15'] %}
+                <img src="{{ restaurant['COL 15'] }}" alt="{{ restaurant['COL 2'] }}" class="restaurant-image">
+                {% else %}
+                <div class="no-image">Pas d'image</div>
+                {% endif %}
+                <!-- Nom du restaurant -->
+                <h3>{{ restaurant['COL 2'] }}</h3>
+                <!-- Type de restaurant -->
+                <p class="type">Type : {{ restaurant['COL 6'] }}</p>
+                <!-- Adresse du restaurant -->
+                <p class="address">Adresse : {{ restaurant['COL 7'] }}</p>
+                <!-- Prix moyen du restaurant -->
+                <p class="price">Prix : {{ restaurant['COL 5'] }}</p>
+                <!-- Note et nombre d'avis du restaurant -->
+                <p class="rating">{{ restaurant['COL 3'] }}/5 ({{ restaurant['COL 4'] }} avis)</p>
+                <!-- Lien vers Google Maps si disponible -->
+                {% if restaurant['COL 1'] %}
+                <a href="{{ restaurant['COL 1'] }}" class="view-more" target="_blank">Voir sur Google Maps</a>
+                {% endif %}
+            </div>
+            <!-- Affiche un message si aucun restaurant n'est trouvé -->
+            {% else %}
+            <p>Aucun restaurant trouvé.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Section des boulangeries recommandées -->
+    <section id="recommended-boulangeries" class="restaurants active">
+        <h2>Nos boulangeries recommandées</h2>
+        <!-- Grille pour afficher les boulangeries recommandées -->
+        <div class="restaurant-grid">
+            <!-- Boucle pour afficher chaque boulangerie recommandée -->
+            {% for boulangerie in recommended_boulangeries %}
+            <div class="restaurant-card">
+                <!-- Affiche l'image de la boulangerie si disponible -->
+                {% if boulangerie['COL 15'] %}
+                <img src="{{ boulangerie['COL 15'] }}" alt="{{ boulangerie['COL 2'] }}" class="restaurant-image">
+                {% else %}
+                <div class="no-image">Pas d'image</div>
+                {% endif %}
+                <!-- Nom de la boulangerie -->
+                <h3>{{ boulangerie['COL 2'] }}</h3>
+                <!-- Type de la boulangerie -->
+                <p class="type">Type : {{ boulangerie['COL 6'] }}</p>
+                <!-- Adresse de la boulangerie -->
+                <p class="address">Adresse : {{ boulangerie['COL 7'] }}</p>
+                <!-- Prix moyen de la boulangerie -->
+                <p class="price">Prix : {{ boulangerie['COL 5'] }}</p>
+                <!-- Note et nombre d'avis de la boulangerie -->
+                <p class="rating">{{ boulangerie['COL 3'] }}/5 ({{ boulangerie['COL 4'] }} avis)</p>
+                <!-- Lien vers Google Maps si disponible -->
+                {% if boulangerie['COL 1'] %}
+                <a href="{{ boulangerie['COL 1'] }}" class="view-more" target="_blank">Voir sur Google Maps</a>
+                {% endif %}
+            </div>
+            <!-- Affiche un message si aucune boulangerie n'est trouvée -->
+            {% else %}
+            <p>Aucune boulangerie trouvée.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>2025 Chambé eat</p>
+    </footer>
+
+    <!-- Lien vers le script JavaScript pour la recherche -->
+    <script src="{{ url_for('static', filename='recherche.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+/* Style général pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Style pour l'en-tête */
+header {
+    background-color: #ff5722;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+/* Style pour la liste de navigation */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style pour les éléments de la liste de navigation */
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+/* Style pour les liens de navigation */
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Style pour le lien actif dans la navigation */
+nav ul li a.active {
+    text-decoration: underline;
+}
+
+/* Style pour la section d'introduction */
+.intro {
+    text-align: center;
+    padding: 40px;
+    background-color: #ffccbc;
+}
+
+/* Style pour le titre h2 dans l'introduction */
+.intro h2 {
+    font-size: 2.5em;
+}
+
+/* Style pour le paragraphe dans l'introduction */
+.intro p {
+    font-size: 1.5em;
+}
+
+/* Style pour le conteneur principal */
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* Style pour la section des filtres */
+.filters {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Style pour le titre h3 dans la section des filtres */
+.filters h3 {
+    margin-bottom: 20px;
+}
+
+/* Style pour les groupes de filtres */
+.filter-group {
+    margin-bottom: 15px;
+}
+
+/* Style pour les étiquettes dans les groupes de filtres */
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style pour les groupes de cases à cocher */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style pour les étiquettes dans les groupes de cases à cocher */
+.checkbox-group label {
+    margin-bottom: 5px;
+}
+
+/* Style pour le bouton dans la section des filtres */
+.filters button {
+    background: #ff5722;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Style pour le bouton au survol */
+.filters button:hover {
+    background: #e64a19;
+}
+
+/* Style pour la section des restaurants */
+.restaurants {
+    flex: 3;
+}
+
+/* Style pour le titre h2 dans la section des restaurants */
+.restaurants h2 {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style pour la liste des restaurants */
+.restaurant-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style pour les éléments de la liste des restaurants */
+.restaurant-item {
+    margin-bottom: 20px;
+}
+
+/* Style pour la carte de restaurant */
+.restaurant-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 150px 1fr 350px;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Style pour le conteneur de l'image du restaurant */
+.restaurant-image-container {
+    width: 150px;
+    height: 120px;
+    margin-right: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style pour l'image de la liste des restaurants */
+.restaurant-list-image {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Style pour le conteneur sans image */
+.no-image-list {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Style pour les détails du restaurant */
+.restaurant-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style pour le titre h3 dans les détails du restaurant */
+.restaurant-details h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Style pour les paragraphes d'adresse, de prix, de note et de type dans les détails du restaurant */
+.restaurant-details .address,
+.restaurant-details .price,
+.restaurant-details .rating,
+.restaurant-details .type {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Style pour la note dans les détails du restaurant */
+.restaurant-details .rating {
+    color: #ffc107;
+}
+
+/* Style pour le lien "Voir plus" dans la carte de restaurant */
+.restaurant-card .view-more {
+    background: #ff5722;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Style pour le lien "Voir plus" au survol */
+.restaurant-card .view-more:hover {
+    background: #e64a19;
+}
+
+/* Style pour les horaires du restaurant */
+.restaurant-schedule {
+    width: 350px;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+/* Style pour le titre h4 dans les horaires du restaurant */
+.restaurant-schedule h4 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+/* Style pour le tableau des horaires du restaurant */
+.restaurant-schedule table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+/* Style pour la première cellule de l'en-tête et de la ligne du tableau des horaires */
+.restaurant-schedule th:first-child,
+.restaurant-schedule td:first-child {
+    width: 40%;
+}
+
+/* Style pour la dernière cellule de l'en-tête et de la ligne du tableau des horaires */
+.restaurant-schedule th:last-child,
+.restaurant-schedule td:last-child {
+    width: 60%;
+}
+
+/* Style pour les cellules de l'en-tête et de la ligne du tableau des horaires */
+.restaurant-schedule th, .restaurant-schedule td {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style pour les cellules de l'en-tête du tableau des horaires */
+.restaurant-schedule th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Style pour les coups de cœur */
+.coups-de-coeur {
+    margin-top: 10px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour les paragraphes dans les coups de cœur */
+.coups-de-coeur p {
+    margin-right: 5px;
+    margin-bottom: 0;
+}
+
+/* Style pour les photos des coups de cœur */
+.coups-de-coeur-photos {
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour les photos des coups de cœur */
+.coup-de-coeur-photo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+/* Style pour le conteneur du logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour le logo */
+.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* Style pour le titre h1 dans l'en-tête */
+header h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Style pour le pied de page */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #ff5722;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Media query pour les écrans de largeur maximale de 600px */
+@media (max-width: 600px) {
+    .restaurant-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .restaurant-image-container {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+        height: auto;
+    }
+    .restaurant-list-image, .no-image-list {
+        height: 150px;
+    }
+    .restaurant-schedule {
+        width: 100%;
+        margin-top: 20px;
+    }
+}

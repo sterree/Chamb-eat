@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Définit le jeu de caractères et la vue pour le responsive design -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liste des Boulangeries - Chambé eat</title>
+    <!-- Lien vers le fichier CSS pour le style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='restaurants.css') }}">
+    <!-- Lien vers Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- En-tête de la page -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de l'application -->
+            <img src="{{ url_for('static', filename='image/chambeat.jpg') }}" alt="Logo Chamb-eat" class="logo">
+            <h1>Chambé seat</h1>
+        </div>
+        <!-- Menu de navigation -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('restaurants') }}">Restaurants</a></li>
+                <li><a href="{{ url_for('boulangeries') }}">Boulangeries</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section d'introduction -->
+    <section class="intro">
+        <h2>Liste des Boulangeries de Chambéry</h2>
+        <p>Retrouvez toutes les boulangeries.</p>
+    </section>
+
+    <!-- Conteneur principal pour le contenu -->
+    <div class="content-wrapper">
+        <!-- Section des filtres -->
+        <section class="filters">
+            <h3>Filtrer les boulangeries</h3>
+            <!-- Groupe de filtres par type -->
+            <div class="filter-group">
+                <label>Type de restaurant :</label>
+                <div class="checkbox-group">
+                    <!-- Boucle pour afficher les cases à cocher pour chaque type -->
+                    {% for type in types %}
+                    <label>
+                        <input type="checkbox" name="type" value="{{ type }}" class="type-checkbox"> {{ type }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Groupe de filtres par prix -->
+            <div class="filter-group">
+                <label>Prix :</label>
+                <div class="checkbox-group">
+                    <!-- Boucle pour afficher les cases à cocher pour chaque fourchette de prix -->
+                    {% for lower, upper in price_ranges %}
+                    <label>
+                        <input type="checkbox" name="price" value="{{ lower }}-{{ upper }}" class="price-checkbox"> {{ lower }}-{{ upper }}€
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Bouton pour appliquer les filtres -->
+            <button onclick="applyFiltersBoulangeries()">Appliquer les filtres</button>
+        </section>
+
+        <!-- Section des restaurants -->
+        <section class="restaurants">
+            <!-- Liste des restaurants -->
+            <ul class="restaurant-list" id="restaurant-list">
+                <!-- Boucle pour afficher chaque restaurant -->
+                {% for restaurant in restaurants %}
+                <li class="restaurant-item">
+                    <div class="restaurant-card">
+                        <!-- Première colonne: Image -->
+                        <div class="restaurant-image-container">
+                            <!-- Affiche l'image du restaurant si disponible -->
+                            {% if restaurant['COL 15'] %}
+                            <img src="{{ restaurant['COL 15'] }}" alt="{{ restaurant['COL 2'] }}" class="restaurant-list-image">
+                            {% else %}
+                            <div class="no-image-list">Pas d'image</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Deuxième colonne: Informations -->
+                        <div class="restaurant-details">
+                            <h3>{{ restaurant['COL 2'] }}</h3>
+                            <p class="address"><i class="fas fa-map-marker-alt"></i> Adresse : {{ restaurant['COL 7'] }}</p>
+                            <p class="price"><i class="fas fa-euro-sign"></i> Prix Moyen : {{ restaurant['COL 5'] }}</p>
+                            <p class="type"><i class="fas fa-utensils"></i> Type : {{ restaurant['COL 6'] }}</p>
+                            <p class="rating"><i class="fas fa-star"></i> Note : {{ restaurant['COL 3'] }}/5 ({{ restaurant['COL 4'] }} avis)</p>
+                            <!-- Lien vers Google Maps si disponible -->
+                            {% if restaurant['COL 1'] %}
+                            <a href="{{ restaurant['COL 1'] }}" class="view-more" target="_blank">Voir sur Google Maps</a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Troisième colonne: Horaires -->
+                        <div class="restaurant-schedule">
+                            <h4>Horaires d'Ouverture</h4>
+                            <table>
+                                <!-- Affiche les horaires d'ouverture pour chaque jour -->
+                                <tr>
+                                    <th>Lundi</th>
+                                    <td>{{ restaurant['COL 8'] }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mardi</th>
+                                    <td>{{ restaurant['COL 9'] }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mercredi</th>
+                                    <td>{{ restaurant['COL 10'] }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Jeudi</th>
+                                    <td>{{ restaurant['COL 11'] }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Vendredi</th>
+                                    <td>{{ restaurant['COL 12'] }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Samedi</th>
+                                    <td>{{ restaurant['COL 13'] }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dimanche</th>
+                                    <td>{{ restaurant['COL 14'] }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <!-- Affiche un message si aucune boulangerie n'est trouvée -->
+                {% else %}
+                <li>Aucune boulangerie trouvée.</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>2025 Chambé eat</p>
+    </footer>
+
+    <!-- Lien vers le script JavaScript pour les filtres -->
+    <script src="{{ url_for('static', filename='filters_boulangeries.js') }}"></script>
+
+</body>
+</html>

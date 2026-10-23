@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Définit le jeu de caractères -->
+    <meta charset="UTF-8">
+    <title>Contact - Chambé eat</title>
+    <!-- Lien vers le fichier CSS pour le style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+</head>
+
+<body>
+
+    <!-- En-tête de la page -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de l'application -->
+            <img src="{{ url_for('static', filename='image/chambeat.jpg') }}" alt="Logo Chamb-eat" class="logo">
+            <h1>Chambé eat</h1>
+        </div>
+        <!-- Menu de navigation -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('restaurants') }}">Restaurants</a></li>
+                <li><a href="{{ url_for('boulangeries') }}">Boulangeries</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section d'introduction -->
+    <section class="intro">
+        <h2>Contactez nos collaborateurs</h2>
+        <p>N'hésitez pas à nous joindre pour toute question ou suggestion !</p>
+    </section>
+
+    <!-- Section des collaborateurs -->
+    <section>
+        <h2 class="contact-heading">Nos collaborateurs</h2>
+        <!-- Conteneur pour les collaborateurs -->
+        <div class="team">
+            <!-- Boucle pour afficher chaque collaborateur -->
+            {% for collab in collaborateurs %}
+            <div class="collaborateur">
+                <!-- Affiche la photo du collaborateur -->
+                <img src="{{ url_for('static', filename=collab.photo.split('static/')[1]) }}" alt="{{ collab.prenom }} {{ collab.nom }}">
+                <h3>{{ collab.prenom }} {{ collab.nom }}</h3>
+                <!-- Affiche l'email du collaborateur avec un lien mailto -->
+                <p>Email : <a href="mailto:{{ collab.email }}">{{ collab.email }}</a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Section des personnes ayant partagé leurs coups de cœur -->
+    <section>
+        <h2 class="contact-heading">Ils ont partagé leurs coups de cœur</h2>
+        <!-- Conteneur pour les personnes ayant partagé leurs coups de cœur -->
+        <div class="team">
+            <!-- Boucle pour afficher chaque personne -->
+            {% for personne in coups_de_coeur_personnes %}
+            <div class="collaborateur">
+                <!-- Affiche la photo de la personne -->
+                <img src="{{ url_for('static', filename=personne.photo.split('static/')[1]) }}" alt="{{ personne.prenom }}">
+                <h3>{{ personne.prenom }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>2025 Chambé eat</p>
+    </footer>
+
+</body>
+</html>
